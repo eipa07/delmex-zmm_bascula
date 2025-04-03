@@ -1,0 +1,53 @@
+<mvc:View
+    controllerName="delmex.bascula.zmmbascula.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:table="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+>
+    <tnt:ToolHeader>
+        <Button
+            text="{i18n>detailview.regresar}"
+            press="goBackBtn"
+        />
+        <ToolbarSpacer />
+        <Title
+            titleStyle="H4"
+            text="{i18n>title}"
+            class="sapUiSmallMargin"
+            id="titleText"
+        />
+        <ToolbarSpacer />
+    </tnt:ToolHeader>
+
+    <ObjectHeader title="Detalle del Folio: {basculaDetails>/Folio}">
+        <attributes>
+            <ObjectAttribute text="Proceso: {basculaDetails>/Proceso}" />
+            <ObjectAttribute text="Tipo ticket: {basculaDetails>/Tipoticket}" />
+            <ObjectAttribute text="Báscula entrada: {basculaDetails>/BasculaEnt}" />
+            <ObjectAttribute text="Centro entrada: {basculaDetails>/CentroEnt}" />
+            <ObjectAttribute text="Báscula salida: {basculaDetails>/BasculaSal}" />
+            <ObjectAttribute text="Centro Salida: {basculaDetails>/CentroSal}" />
+            <ObjectAttribute text="Material: {basculaDetails>/Material}" />
+            <ObjectAttribute text="Fecha Reg Bas: {basculaDetails>/FechaRegBas}" />
+            <ObjectAttribute text="Placa: {basculaDetails>/Placa}" />
+            <ObjectAttribute text="Conductor: {basculaDetails>/Conductor}" />
+            <ObjectAttribute text="Fecha Ent Bas: {basculaDetails>/FechaEntBas}" />
+            <ObjectAttribute text="Pesaje: {basculaDetails>/Pesaje}" />
+            <ObjectAttribute text="Orden Compra: *************************" />
+            <ObjectAttribute text="Orden Venta: *************************" />
+            <ObjectAttribute text="Fecha Sal Bas: {basculaDetails>/FechaSalBas}" />
+            <ObjectAttribute text="Pesaje2: {basculaDetails>/Pesaje2}" />
+            <ObjectAttribute text="Peso Neto: {basculaDetails>/PesoNeto}" />
+            <ObjectAttribute text="Peso Teórico: {basculaDetails>/PesoTeorico}" />
+            <ObjectAttribute text="Diferencia: {basculaDetails>/Diferencia}" />
+            <ObjectAttribute text="Valor: {basculaDetails>/Valor}" />
+            <ObjectAttribute text="RegIncompleto: {basculaDetails>/RegIncompleto}" />
+
+            <ObjectAttribute text="Sobra --------Numero Doc.: {basculaDetails>/NumeroDoc}" />
+            <ObjectAttribute text="Sobra --------Mensaje: {basculaDetails>/Mensaje}" />
+
+        </attributes>
+    </ObjectHeader>
+</mvc:View>

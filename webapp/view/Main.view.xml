@@ -1,0 +1,174 @@
+<mvc:View
+    controllerName="delmex.bascula.zmmbascula.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:svm="sap.ui.comp.smartvariants"
+>
+    <tnt:ToolHeader>
+        <ToolbarSpacer />
+        <Title
+            titleStyle="H4"
+            text="{i18n>title}"
+            class="sapUiSmallMargin"
+            id="titleText"
+        />
+        <ToolbarSpacer />
+    </tnt:ToolHeader>
+    <f:DynamicPage headerExpanded="{/headerExpanded}">
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+                    <fb:FilterBar
+                        id="filterbar"
+                        persistencyKey="myPersKey"
+                        useToolbar="false"
+                        search=".onSearch"
+                        filterChange=".onFilterChange"
+                        afterVariantLoad=".onAfterVariantLoad"
+                    >
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                name="Centro_ent"
+                                label="Centro Ent"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputCentro_ent"
+                                        placeholder="Buscar Centro Ent"                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                name="Ticket"
+                                label="Ticket"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputTipoTicket"
+                                        placeholder="Buscar Ticket" 
+										value="{requestModel>/tipo_ticket}"                                   />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                name="Centro_sal"
+                                label="Centro Sal"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputCentro_sal"
+                                        placeholder="Centro Sal"
+										value="{requestModel>/centro_sal}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                name="Material"
+                                label="Material"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputMaterial"
+                                        placeholder="Material"
+                                        value="{requestModel>/material}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table
+                id="productsTable"
+                items="{detailsModel>/}"
+                headerText="Lista ...."
+				
+            >
+                <columns>
+                    <Column id="Folio_col_id">
+                        <Text text="Folio" />
+                    </Column>
+                    <Column id="Tipoticket_col_id">
+                        <Text text="Tipo ticket" />
+                    </Column>
+                    <Column id="CentroEnt_col_id">
+                        <Text text="Centro Ent" />
+                    </Column>
+                    <Column id="CentroSal_col_id">
+                        <Text text="Centro Sal" />
+                    </Column>
+                    <Column id="Material_col_id" >
+                        <Text text="Material" />
+                    </Column>
+                    <!-- <Column id="BasculaEnt_col_id" ><Text text="BasculaEnt" /></Column>
+			<Column id="BasculaSal_col_id" ><Text text="BasculaSal" /></Column>
+			<Column id="FechaRegBas_col_id" ><Text text="FechaRegBas" /></Column>
+			<Column id="FechaEntBas_col_id" ><Text text="FechaEntBas" /></Column>
+			<Column id="FechaSalBas_col_id" ><Text text="FechaSalBas" /></Column>
+			<Column id="Placa_col_id" ><Text text="Placa" /></Column>
+			<Column id="Conductor_col_id" ><Text text="Conductor" /></Column>
+			<Column id="Pesaje_col_id" ><Text text="Pesaje" /></Column>
+			<Column id="Proceso_col_id" ><Text text="Proceso" /></Column>
+			<Column id="NumeroDoc_col_id" ><Text text="NumeroDoc" /></Column>
+			<Column id="Pesaje2_col_id" ><Text text="Pesaje2" /></Column>
+			<Column id="PesoNeto_col_id" ><Text text="PesoNeto" /></Column>
+			<Column id="PesoTeorico_col_id" ><Text text="PesoTeorico" /></Column>
+			<Column id="Diferencia_col_id" ><Text text="Diferencia" /></Column>
+			<Column id="Valor_col_id" ><Text text="Valor" /></Column>
+			<Column id="RegIncompleto_col_id" ><Text text="RegIncompleto" /></Column>
+			<Column id="Mensaje_col_id" ><Text text="Mensaje" /></Column>  -->
+                </columns>
+                <items>
+                    <ColumnListItem
+                        type="Active"
+                        vAlign="Middle"
+                        navigated="{
+						parts: [
+							'detailsModel>/Folio',
+							'Folio'
+						]
+					}"
+                        press="navToDetail"
+                    >
+                        <cells>
+                            <Text text="{detailsModel>Folio}" />
+                            <Text text="{detailsModel>Tipoticket}" />
+                            <Text text="{detailsModel>CentroEnt}" />
+                            <Text text="{detailsModel>CentroSal}" />
+                            <Text text="{detailsModel>Material}" />
+                            <!-- <Text text="{zbasc>BasculaEnt}" />
+					<Text text="{zbasc>BasculaSal}" />
+					<Text text="{zbasc>FechaRegBas}" />
+					<Text text="{zbasc>FechaEntBas}" />
+					<Text text="{zbasc>FechaSalBas}" />
+					<Text text="{zbasc>Placa}" />
+					<Text text="{zbasc>Conductor}" />
+					<Text text="{zbasc>Pesaje}" />
+					<Text text="{zbasc>Proceso}" />
+					<Text text="{zbasc>NumeroDoc}" />
+					<Text text="{zbasc>Pesaje2}" />
+					<Text text="{zbasc>PesoNeto}" />
+					<Text text="{zbasc>PesoTeorico}" />
+					<Text text="{zbasc>Diferencia}" />
+					<Text text="{zbasc>Valor}" />
+					<Text text="{zbasc>RegIncompleto}" />
+					<Text text="{zbasc>Mensaje}" />  -->
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
