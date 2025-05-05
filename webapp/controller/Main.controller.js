@@ -24,7 +24,7 @@ sap.ui.define([
                 "centro_ent": "",
                 "tipo_ticket": "",
                 "centro_sal": "",
-                "material": "",
+                "material": ""
 
 
             });

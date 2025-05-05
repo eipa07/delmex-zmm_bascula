@@ -40,7 +40,8 @@
                                 <fb:control>
                                     <Input
                                         name="inputCentro_ent"
-                                        placeholder="Buscar Centro Ent"                                    />
+                                        placeholder="Buscar Centro Ent"
+                                    />
                                 </fb:control>
                             </fb:FilterGroupItem>
                             <fb:FilterGroupItem
@@ -52,8 +53,9 @@
                                 <fb:control>
                                     <Input
                                         name="inputTipoTicket"
-                                        placeholder="Buscar Ticket" 
-										value="{requestModel>/tipo_ticket}"                                   />
+                                        placeholder="Buscar Ticket"
+                                        value="{requestModel>/tipo_ticket}"
+                                    />
                                 </fb:control>
                             </fb:FilterGroupItem>
                             <fb:FilterGroupItem
@@ -66,7 +68,7 @@
                                     <Input
                                         name="inputCentro_sal"
                                         placeholder="Centro Sal"
-										value="{requestModel>/centro_sal}"
+                                        value="{requestModel>/centro_sal}"
                                     />
                                 </fb:control>
                             </fb:FilterGroupItem>
@@ -93,8 +95,7 @@
             <Table
                 id="productsTable"
                 items="{detailsModel>/}"
-                headerText="Lista ...."
-				
+                headerText="Resultado"
             >
                 <columns>
                     <Column id="Folio_col_id">
@@ -109,8 +110,11 @@
                     <Column id="CentroSal_col_id">
                         <Text text="Centro Sal" />
                     </Column>
-                    <Column id="Material_col_id" >
+                    <Column id="Material_col_id">
                         <Text text="Material" />
+                    </Column>
+                    <Column id="Proceso_col_id">
+                        <Text text="Proceso" />
                     </Column>
                     <!-- <Column id="BasculaEnt_col_id" ><Text text="BasculaEnt" /></Column>
 			<Column id="BasculaSal_col_id" ><Text text="BasculaSal" /></Column>
@@ -120,7 +124,7 @@
 			<Column id="Placa_col_id" ><Text text="Placa" /></Column>
 			<Column id="Conductor_col_id" ><Text text="Conductor" /></Column>
 			<Column id="Pesaje_col_id" ><Text text="Pesaje" /></Column>
-			<Column id="Proceso_col_id" ><Text text="Proceso" /></Column>
+			
 			<Column id="NumeroDoc_col_id" ><Text text="NumeroDoc" /></Column>
 			<Column id="Pesaje2_col_id" ><Text text="Pesaje2" /></Column>
 			<Column id="PesoNeto_col_id" ><Text text="PesoNeto" /></Column>
@@ -148,6 +152,7 @@
                             <Text text="{detailsModel>CentroEnt}" />
                             <Text text="{detailsModel>CentroSal}" />
                             <Text text="{detailsModel>Material}" />
+                            <Text text="{detailsModel>Proceso}" />
                             <!-- <Text text="{zbasc>BasculaEnt}" />
 					<Text text="{zbasc>BasculaSal}" />
 					<Text text="{zbasc>FechaRegBas}" />

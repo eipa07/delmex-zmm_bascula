@@ -5,6 +5,8 @@
     xmlns:tnt="sap.tnt"
     xmlns:table="sap.ui.table"
     xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
 >
     <tnt:ToolHeader>
         <Button
@@ -21,33 +23,232 @@
         <ToolbarSpacer />
     </tnt:ToolHeader>
 
-    <ObjectHeader title="Detalle del Folio: {basculaDetails>/Folio}">
-        <attributes>
-            <ObjectAttribute text="Proceso: {basculaDetails>/Proceso}" />
-            <ObjectAttribute text="Tipo ticket: {basculaDetails>/Tipoticket}" />
-            <ObjectAttribute text="Báscula entrada: {basculaDetails>/BasculaEnt}" />
-            <ObjectAttribute text="Centro entrada: {basculaDetails>/CentroEnt}" />
-            <ObjectAttribute text="Báscula salida: {basculaDetails>/BasculaSal}" />
-            <ObjectAttribute text="Centro Salida: {basculaDetails>/CentroSal}" />
-            <ObjectAttribute text="Material: {basculaDetails>/Material}" />
-            <ObjectAttribute text="Fecha Reg Bas: {basculaDetails>/FechaRegBas}" />
-            <ObjectAttribute text="Placa: {basculaDetails>/Placa}" />
-            <ObjectAttribute text="Conductor: {basculaDetails>/Conductor}" />
-            <ObjectAttribute text="Fecha Ent Bas: {basculaDetails>/FechaEntBas}" />
-            <ObjectAttribute text="Pesaje: {basculaDetails>/Pesaje}" />
-            <ObjectAttribute text="Orden Compra: *************************" />
-            <ObjectAttribute text="Orden Venta: *************************" />
-            <ObjectAttribute text="Fecha Sal Bas: {basculaDetails>/FechaSalBas}" />
-            <ObjectAttribute text="Pesaje2: {basculaDetails>/Pesaje2}" />
-            <ObjectAttribute text="Peso Neto: {basculaDetails>/PesoNeto}" />
-            <ObjectAttribute text="Peso Teórico: {basculaDetails>/PesoTeorico}" />
-            <ObjectAttribute text="Diferencia: {basculaDetails>/Diferencia}" />
-            <ObjectAttribute text="Valor: {basculaDetails>/Valor}" />
-            <ObjectAttribute text="RegIncompleto: {basculaDetails>/RegIncompleto}" />
+    <VBox class="sapUiSmallMargin">
+        <f:Form
+            id="FormDisplay480_Trial"
+            editable="false"
+        >
+            <f:title>
+                <core:Title
+                    text="{i18n>detailView.form_title} {basculaDetails>/Folio}"
+                />
+				
+            </f:title>
+			
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="4"
+                    labelSpanL="4"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="3"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false"
+                />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer title="">
+                    <f:formElements>
+                        <f:FormElement label="{i18n>detailView.tipo_ticket}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Tipoticket}"
+                                    id="txt_Tipoticket"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>detailView.bascula_entrada}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/BasculaEnt}"
+                                    id="txt_BasculaEnt"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>detailView.centro_entrada}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/CentroEnt}"
+                                    id="txt_CentroEnt"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>detailView.bascula_salida}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/BasculaSal}"
+                                    id="txt_BasculaSal"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>detailView.centro_salida}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/CentroSal}"
+                                    id="txt_CentroSal"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>detailView.material}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Material}"
+                                    id="txt_Material"
+                                />
+                            </f:fields>
+                        </f:FormElement>
 
-            <ObjectAttribute text="Sobra --------Numero Doc.: {basculaDetails>/NumeroDoc}" />
-            <ObjectAttribute text="Sobra --------Mensaje: {basculaDetails>/Mensaje}" />
+                        <f:FormElement label="{i18n>detailView.fecha_reg_bas}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/FechaRegBas}"
+                                    id="txt_FechaRegBas"
+                                />
+                            </f:fields>
+                        </f:FormElement>
 
-        </attributes>
-    </ObjectHeader>
+
+						 <f:FormElement label="{i18n>detailView.placa}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Placa}"
+                                    id="txt_Placa"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.conductor}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Conductor}"
+                                    id="txt_Conductor"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.fecha_ent_bas}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/FechaEntBas}"
+                                    id="txt_FechaEntBas"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+
+
+                    </f:formElements>
+                </f:FormContainer>
+                <f:FormContainer title="">
+                    <f:formElements>
+                       
+
+                        <f:FormElement label="{i18n>detailView.pesaje}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Pesaje}"
+                                    id="txt_Pesaje"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.fecha_sal_bas}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/FechaSalBas}"
+                                    id="txt_FechaSalBas"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.pesaje2}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Pesaje2}"
+                                    id="txt_Pesaje2"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.peso_neto}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/PesoNeto}"
+                                    id="txt_PesoNeto"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+						<f:FormElement label="{i18n>detailView.peso_teorico}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/PesoTeorico}"
+                                    id="txt_PesoTeorico"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.diferencia}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Diferencia}"
+                                    id="txt_Diferencia"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.valor}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Valor}"
+                                    id="txt_Valor"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.reg_incompleto}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/RegIncompleto}"
+                                    id="txt_RegIncompleto"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.numero_doc}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/NumeroDoc}"
+                                    id="txt_NumeroDoc"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>detailView.mensaje}">
+                            <f:fields>
+                                <Text
+                                    text="{basculaDetails>/Mensaje}"
+                                    id="txt_Mensaje"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+
+
+                    </f:formElements>
+                </f:FormContainer>
+               
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+
+	<VBox>
+	<Button text="Generar PDF" press="onShowPDF"/>
+	</VBox>
 </mvc:View>
