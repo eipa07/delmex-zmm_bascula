@@ -3,7 +3,7 @@ sap.ui.define([
 ], (BaseController) => {
   "use strict";
 
-  return BaseController.extend("delmex.bascula.zmmbascula.controller.App", {
+  return BaseController.extend("delmex.zmmbascula.controller.App", {
       onInit() {
       }
   });

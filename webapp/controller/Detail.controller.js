@@ -1,11 +1,12 @@
 sap.ui.define([
-    "delmex/bascula/zmmbascula/controller/BaseController",
+    "delmex/zmmbascula/controller/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
-    "sap/m/PDFViewer"
-], (BaseController, JSONModel, Filter, FilterOperator, MessageBox, PDFViewer) => {
+    "sap/m/PDFViewer",
+    "delmex/zmmbascula/util/formatter",
+], (BaseController, JSONModel, Filter, FilterOperator, MessageBox, PDFViewer, formatter) => {
     "use strict";
 
     /**
@@ -15,10 +16,13 @@ sap.ui.define([
      * @param {typeof sap.ui.model.Filter} Filter 
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator 
      * @param {typeof sap.m.MessageBox} MessageBox
+     * @param {typeof delmex.zmmbascula.util.formatter} formatter
      */
 
 
-    return BaseController.extend("delmex.bascula.zmmbascula.controller.Detail", {
+    return BaseController.extend("delmex.zmmbascula.controller.Detail", {
+
+        formatter: formatter,
         onInit() {
 
             console.log("Detail");
@@ -121,7 +125,7 @@ sap.ui.define([
 
             // Coordenadas Folio
 
-            const sPath = sap.ui.require.toUrl("delmex/bascula/zmmbascula/images/Logo.png");
+            const sPath = sap.ui.require.toUrl("delmex/zmmbascula/images/Logo.png");
 
             this.loadImageAsBase64(sPath, function (base64Img) {
 
@@ -183,10 +187,11 @@ sap.ui.define([
                 doc.text(_basculaDetails.Pesaje, _marginLeft + 30, 155); 
                 doc.text(_pdf.Helpers.Line, _marginLeft + 30, 156); 
 
+                var _FechaEntBas = this.formatter.formatDate(_basculaDetails.FechaEntBas); 
 
                 doc.text(_fechaSalida_1, _marginLeft, 165);
                 doc.text(_fechaSalida_2, _marginLeft, 170);
-                doc.text(_basculaDetails.FechaEntBas, 60, 170);
+                doc.text(_FechaEntBas, 60, 170);
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 171); 
 
                 doc.text(_placa, _marginLeft, 185);
@@ -207,7 +212,7 @@ sap.ui.define([
 
                 doc.text(_fechaSalida_1, _marginLeft, 225);
                 doc.text(_fechaSalida_2, _marginLeft, 230);
-                doc.text(_basculaDetails.FechaEntBas, 60, 230);
+                doc.text(_FechaEntBas, 60, 230);
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 231); 
 
                 // Footer

@@ -1,7 +1,7 @@
 {
   "_version": "1.65.0",
   "sap.app": {
-    "id": "delmex.bascula.zmmbascula",
+    "id": "delmex.zmmbascula",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -60,7 +60,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "delmex.bascula.zmmbascula.i18n.i18n"
+          "bundleName": "delmex.zmmbascula.i18n.i18n"
         }
       },
       "zbasc": {
@@ -86,9 +86,9 @@
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "delmex.bascula.zmmbascula.view",
+        "path": "delmex.zmmbascula.view",
         "async": true,
-        "viewPath": "delmex.bascula.zmmbascula.view"
+        "viewPath": "delmex.zmmbascula.view"
       },
       "routes": [
         {
@@ -118,7 +118,7 @@
       }
     },
     "rootView": {
-      "viewName": "delmex.bascula.zmmbascula.view.App",
+      "viewName": "delmex.zmmbascula.view.App",
       "type": "XML",
       "id": "App"
     }

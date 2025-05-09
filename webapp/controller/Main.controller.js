@@ -1,5 +1,5 @@
 sap.ui.define([
-    "delmex/bascula/zmmbascula/controller/BaseController",
+    "delmex/zmmbascula/controller/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
@@ -9,7 +9,7 @@ sap.ui.define([
 
     /**
      * 
-     * @param {typeof delmex.bascula.controller.BaseController} BaseController 
+     * @param {typeof delmex.zmmbascula.controller.BaseController} BaseController 
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel 
      * @param {typeof sap.ui.model.Filter} Filter 
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator 
@@ -17,7 +17,7 @@ sap.ui.define([
      */
 
 
-    return BaseController.extend("delmex.bascula.zmmbascula.controller.Main", {
+    return BaseController.extend("delmex.zmmbascula.controller.Main", {
         onInit() {
 
             let _requestModel = new JSONModel({

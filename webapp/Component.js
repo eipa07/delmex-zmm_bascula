@@ -1,10 +1,10 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "delmex/bascula/zmmbascula/model/models"
+    "delmex/zmmbascula/model/models"
 ], (UIComponent, models) => {
     "use strict";
 
-    return UIComponent.extend("delmex.bascula.zmmbascula.Component", {
+    return UIComponent.extend("delmex.zmmbascula.Component", {
         metadata: {
             manifest: "json",
             interfaces: [

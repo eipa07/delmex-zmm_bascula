@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="delmex.bascula.zmmbascula.controller.Main"
+    controllerName="delmex.zmmbascula.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:tnt="sap.tnt"

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="delmex.bascula.zmmbascula.controller.Detail"
+    controllerName="delmex.zmmbascula.controller.Detail"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:tnt="sap.tnt"
@@ -107,7 +107,7 @@
                         <f:FormElement label="{i18n>detailView.fecha_reg_bas}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/FechaRegBas}"
+                                    text="{ path: 'basculaDetails>/FechaRegBas', formatter: '.formatter.formatDate' }"
                                     id="txt_FechaRegBas"
                                 />
                             </f:fields>
@@ -135,7 +135,7 @@
                         <f:FormElement label="{i18n>detailView.fecha_ent_bas}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/FechaEntBas}"
+                                    text="{ path: 'basculaDetails>/FechaEntBas', formatter: '.formatter.formatDate' }"
                                     id="txt_FechaEntBas"
                                 />
                             </f:fields>
@@ -161,7 +161,7 @@
                         <f:FormElement label="{i18n>detailView.fecha_sal_bas}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/FechaSalBas}"
+                                    text="{ path: 'basculaDetails>/FechaSalBas', formatter: '.formatter.formatDate' }"
                                     id="txt_FechaSalBas"
                                 />
                             </f:fields>

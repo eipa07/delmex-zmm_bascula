@@ -14,7 +14,7 @@ sap.ui.define([
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "delmex.bascula.zmmbascula",
+					name: "delmex.zmmbascula",
 					async: true
 				},
 				hash: oOptions.hash,

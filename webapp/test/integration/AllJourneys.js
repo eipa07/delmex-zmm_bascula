@@ -7,7 +7,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "delmex.bascula.zmmbascula.view.",
+		viewNamespace: "delmex.zmmbascula.view.",
 		autoWait: true
 	});
 });
