@@ -32,9 +32,8 @@
                 <core:Title
                     text="{i18n>detailView.form_title} {basculaDetails>/Folio}"
                 />
-				
             </f:title>
-			
+
             <f:layout>
                 <f:ResponsiveGridLayout
                     labelSpanXL="4"
@@ -63,7 +62,9 @@
                                 />
                             </f:fields>
                         </f:FormElement>
-                        <f:FormElement label="{i18n>detailView.bascula_entrada}">
+                        <f:FormElement
+                            label="{i18n>detailView.bascula_entrada}"
+                        >
                             <f:fields>
                                 <Text
                                     text="{basculaDetails>/BasculaEnt}"
@@ -113,8 +114,7 @@
                             </f:fields>
                         </f:FormElement>
 
-
-						 <f:FormElement label="{i18n>detailView.placa}">
+                        <f:FormElement label="{i18n>detailView.placa}">
                             <f:fields>
                                 <Text
                                     text="{basculaDetails>/Placa}"
@@ -140,15 +140,10 @@
                                 />
                             </f:fields>
                         </f:FormElement>
-
-
-
                     </f:formElements>
                 </f:FormContainer>
                 <f:FormContainer title="">
                     <f:formElements>
-                       
-
                         <f:FormElement label="{i18n>detailView.pesaje}">
                             <f:fields>
                                 <Text
@@ -185,7 +180,7 @@
                             </f:fields>
                         </f:FormElement>
 
-						<f:FormElement label="{i18n>detailView.peso_teorico}">
+                        <f:FormElement label="{i18n>detailView.peso_teorico}">
                             <f:fields>
                                 <Text
                                     text="{basculaDetails>/PesoTeorico}"
@@ -221,18 +216,20 @@
                             </f:fields>
                         </f:FormElement>
 
-                        <f:FormElement label="{i18n>detailView.numero_doc}"> <!-- OC -->
+                        <f:FormElement label="{i18n>detailView.numero_doc}">
+                            <!-- OC editable="{= !${basculaDetails>/NumeroDoc} }"-->
                             <f:fields>
                                 <Input
-                                    text="{basculaDetails>/NumeroDoc}"
+                                    value="{
+                                        path: 'basculaDetails>/NumeroDoc',
+                                        formatter: '.formatter.removeSpaces'
+                                    }"
                                     id="txt_NumeroDoc"
-                                    editable="{= !${settingsModel>/flag_ov} }"
-                                    width="30%"
+                                    width="50%"
+                                    placeholder="{i18n>detailView.numero_doc.placeholder}"
                                 />
-
                             </f:fields>
                         </f:FormElement>
-
                         <f:FormElement label="{i18n>detailView.mensaje}">
                             <f:fields>
                                 <Text
@@ -241,17 +238,25 @@
                                 />
                             </f:fields>
                         </f:FormElement>
-
-
-
                     </f:formElements>
                 </f:FormContainer>
-               
             </f:formContainers>
         </f:Form>
     </VBox>
 
-	<VBox>
-	<Button text="Generar PDF" press="onShowPDF"/>
-	</VBox>
+    <HBox
+        class="sapUiSmallMarginTop sapUiMediumMarginBeginEnd"
+        justifyContent="End"
+        alignItems="Center"
+    >
+        <Button
+            text="{i18n>detailView.generar_pdf}"
+            press="onShowPDF"
+        />
+        <Button
+            text="{i18n>detailView.actualizar_datos}"
+            press="onUpdateData"
+            class="sapUiSmallMarginBegin"
+        />
+    </HBox>
 </mvc:View>

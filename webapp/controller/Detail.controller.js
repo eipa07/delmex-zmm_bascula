@@ -39,7 +39,7 @@ sap.ui.define([
             _pdfStructureModel.loadData("./model/PDF_Structure.json", false);
             this.getView().setModel(_pdfStructureModel, "pdfStructureModel");
 
-            let _settingsModel = this.detailSettingsModel(); 
+            let _settingsModel = this.detailSettingsModel();
             this.getView().setModel(_settingsModel, "settingsModel");
 
 
@@ -62,7 +62,7 @@ sap.ui.define([
 
             var _oModel = this.getView().getModel("zbasc");
 
-            var _url = "/Z_ALTA_Set('" + _folio + "')";
+            var _url = "/Folio('" + _folio + "')";
 
             _oModel.read(_url, {
                 success: function (oData, Result) {
@@ -100,7 +100,7 @@ sap.ui.define([
             var _bodySize = 12;
 
             doc.setFontSize(_headerSize);
-            
+
 
             // Coordenadas para centrar el texto de cabecera
             const _header_line1_Width = doc.getTextWidth(_pdf.Header.Line1);
@@ -120,7 +120,7 @@ sap.ui.define([
 
             var _folio = _pdf.Body.Folio + _basculaDetails.Folio;
 
-            
+
 
 
             // Coordenadas Folio
@@ -156,7 +156,7 @@ sap.ui.define([
 
                 const _marginLeft = 20;
 
-                
+
                 var _placa = _pdf.Body.Placa;
                 var _bruto1 = _pdf.Body.Bruto;
                 var _bound = _pdf.Body.Bound;
@@ -170,73 +170,73 @@ sap.ui.define([
 
 
 
-               
 
-                
+
+
                 doc.setFont("helvetica", "italic");    // fuente
-                
+
 
                 doc.text(_placa, _marginLeft, 140); // X = 10 (desde el margen izquierdo)
-                doc.text(_basculaDetails.Placa, _marginLeft + 30, 140); 
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 141); 
+                doc.text(_basculaDetails.Placa, _marginLeft + 30, 140);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 141);
 
                 doc.text(_bruto1, _marginLeft, 150);
                 doc.text(_bound, _marginLeft, 155);
-                doc.text(_basculaDetails.Pesaje, _marginLeft + 30, 155); 
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 156); 
+                doc.text(_basculaDetails.Pesaje.trim(), _marginLeft + 30, 155);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 156);
 
-                var _FechaEntBas = this.formatter.formatDate(_basculaDetails.FechaEntBas); 
+                var _FechaEntBas = this.formatter.formatDate(_basculaDetails.FechaEntBas);
 
                 doc.text(_fechaSalida_1, _marginLeft, 165);
                 doc.text(_fechaSalida_2, _marginLeft, 170);
                 doc.text(_FechaEntBas, 60, 170);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 171); 
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 171);
 
                 doc.text(_placa, _marginLeft, 185);
-                doc.text(_basculaDetails.Placa, _marginLeft + 30, 185); 
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 186); 
+                doc.text(_basculaDetails.Placa.trim(), _marginLeft + 30, 185);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 186);
 
 
                 doc.text(_bruto, _marginLeft, 200);
-                doc.text(_basculaDetails.Pesaje2, _marginLeft + 30, 200); 
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 201); 
+                doc.text(_basculaDetails.Pesaje2.trim(), _marginLeft + 30, 200);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 201);
 
-                
-                
+
+
                 doc.text(_called_Neto, _marginLeft, 215);
-                doc.text(_basculaDetails.PesoNeto, _marginLeft + 40, 215); 
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 216); 
+                doc.text(_basculaDetails.PesoNeto.trim(), _marginLeft + 40, 215);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 216);
 
 
                 doc.text(_fechaSalida_1, _marginLeft, 225);
                 doc.text(_fechaSalida_2, _marginLeft, 230);
                 doc.text(_FechaEntBas, 60, 230);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 231); 
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 231);
 
                 // Footer
 
                 var _nombre = _pdf.Footer.Nombre;
                 var _referencia_material = _pdf.Footer.Referencia_Material; // Orden de compra
-                var _no_documento = _pdf.Footer.No_Doc + _basculaDetails.NumeroDoc; // Orden de venta
+                var _no_documento = _pdf.Footer.No_Doc; // Orden de venta
 
 
 
                 doc.text(_nombre, _marginLeft, 250);
                 doc.text(_basculaDetails.Conductor, 60, 250);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 251); 
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 251);
 
                 doc.text(_placa, _marginLeft, 260);
-                doc.text(_basculaDetails.Folio, 60, 260);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 261); 
+                doc.text(_basculaDetails.Folio.trim(), 60, 260);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 261);
 
 
-                doc.text(_referencia_material, _marginLeft, 270);
-                doc.text(_basculaDetails.NumeroDoc, 60, 270); // OC => NumeroDoc
-                doc.text(_pdf.Helpers.Line, _marginLeft + 60, 271); 
-                
-                doc.text(_no_documento, _marginLeft, 280);
-                doc.text("Pendiente - orden de venta", 100, 280);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 60, 281); 
+                doc.text(_referencia_material.trim(), _marginLeft, 270);
+                doc.text(_basculaDetails.Material.trim(), 90, 270); // OC => NumeroDoc
+                doc.text(_pdf.Helpers.Line, 90, 271);
+
+                doc.text(_no_documento.trim(), _marginLeft, 280);
+                doc.text(_basculaDetails.NumeroDoc.trim(), _marginLeft + 50, 280);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 50, 281);
 
 
 
@@ -264,6 +264,119 @@ sap.ui.define([
             };
             img.src = src;
         },
+
+        /**
+    * Actualiza el campo NumeroDoc en la entidad 'Alta' usando el método PATCH.
+    * Solo ejecuta el PATCH si existen tanto el folio como el número de documento.
+    * Utiliza una llamada jQuery.ajax con CSRF token manual para cumplir con el backend ABAP.
+    */
+        onUpdateData: async function () {
+            // Obtener el modelo OData configurado en el manifest (zbasc)
+            const oODataModel = this.getView().getModel("zbasc");
+
+            // Obtener el modelo local que contiene los datos actuales (incluye el Folio)
+            const oJSONModel = this.getView().getModel("basculaDetails");
+
+            // Extraer el folio (clave de la entidad) y el valor de NumeroDoc desde la vista
+            const sFolio = oJSONModel?.getData()?.Folio;
+            const sNumeroDoc = this.getView().byId("txt_NumeroDoc").getValue();
+
+            // Validación: ambos valores son obligatorios
+            if (!sFolio || !sNumeroDoc) {
+                sap.m.MessageBox.warning(this.getResourceBundle().getText("message.folio_oc_requeridos"));
+                return;
+            }
+
+            // Construcción del path OData y la URL completa para el PATCH
+            const sEntityPath = `/Alta('${sFolio}')`;
+            const sPAtchrequest = oODataModel.sServiceUrl + sEntityPath;
+
+            // Cuerpo (payload) con los datos a actualizar
+            const oPayload = {
+                NumeroDoc: sNumeroDoc
+            };
+
+            try {
+                // Obtener token CSRF para autorizar la modificación
+                //let sServiceUrl = "/sap/opu/odata/sap/ZUI_BASCULA_SRV_V2/Folio('0')";
+                let sServiceUrl = "/e4a25f08-7b50-4795-a093-b83466778bb4.delmexbasculazmmbascula.delmexzmmbascula-0.0.1/sap/opu/odata/sap/ZUI_BASCULA_SRV_V2/Folio('0')";
+                const sToken = await this._fetchCsrfToken(sServiceUrl);
+
+                // Enviar la petición PATCH usando jQuery.ajax
+                await $.ajax({
+                    url: sPAtchrequest, // ej: /sap/opu/odata/sap/ZUI_BASCULA_SRV_V2/Alta('123')
+                    method: "PATCH",
+                    headers: {
+                        "X-CSRF-Token": sToken,
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    data: JSON.stringify({
+                        NumeroDoc: sNumeroDoc  // asegúrate de que sea exactamente como en el backend
+                    }),
+                    success: () => {
+                        sap.m.MessageToast.show(this.getResourceBundle().getText("message.actualizacion_exitosa"));
+                        oODataModel.refresh(true);
+                    },
+                    error: (oError) => {
+                        console.error("❌ Error en PATCH:", oError);
+                        sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_patch"));
+                    }
+                });
+                
+
+            } catch (oError) {
+                // Si falló la obtención del token CSRF
+                console.error("❌ Error obteniendo CSRF Token:", oError);
+                sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_csrf"));
+            }
+        }
+
+
+
+
+        /* onUpdateData: function () {
+            // Obtener el modelo OData real por su nombre declarado en manifest.json
+            const oODataModel = this.getView().getModel("zbasc");
+
+            // Obtener el modelo local con los datos de detalle (donde está el Folio)
+            const oJSONModel = this.getView().getModel("basculaDetails");
+
+            // Validar existencia de datos
+            if (!oJSONModel || !oJSONModel.getData || !oJSONModel.getData().Folio) {
+                sap.m.MessageBox.warning("No se encontró el folio en el modelo 'basculaDetails'.");
+                return;
+            }
+
+            const sFolio = oJSONModel.getData().Folio; // clave
+            const sNumeroDoc = this.getView().byId("txt_NumeroDoc").getValue(); // nuevo valor
+
+            if (!sNumeroDoc) {
+                sap.m.MessageBox.warning("Número de documento no puede estar vacío.");
+                return;
+            }
+
+            // Construir el path con clave primaria
+            const sPath = `/Alta('${sFolio}')`;
+
+            // Payload con el campo a actualizar
+            const oPayload = {
+                NumeroDoc: sNumeroDoc
+            };
+
+            // Ejecutar update usando el modelo OData
+            oODataModel.update(sPath, oPayload, {
+                success: () => {
+                    sap.m.MessageToast.show("📄 Registro actualizado correctamente.");
+                    oODataModel.refresh(true); // Refresca para que la vista recargue datos si es necesario
+                },
+                error: (oError) => {
+                    const sMessage = oError?.message || "Ocurrió un error al actualizar.";
+                    console.error("❌ Error al actualizar:", oError);
+                    sap.m.MessageBox.error("Error al actualizar:\n" + sMessage);
+                }
+            });
+        } */
 
 
 

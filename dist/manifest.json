@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "ZBASC_SRV": {
-                "uri": "sap/opu/odata/sap/ZBASC_SRV/",
+                "uri": "sap/opu/odata/sap/ZUI_BASCULA_SRV_V2/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],

@@ -5,10 +5,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox"
-], (BaseController, formatter, JSONModel, Filter, FilterOperator, MessageBox) => {
-    "use strict";
+]
 
-    /**
+/**
      * @param {typeof delmex.zmmbascula.controller.BaseController} BaseController 
      * @param {typeof delmex.zmmbascula.model.formatter} formatter 
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel 
@@ -17,6 +16,8 @@ sap.ui.define([
      * @param {typeof sap.m.MessageBox} MessageBox
      */
 
+, (BaseController, formatter, JSONModel, Filter, FilterOperator, MessageBox) => {
+    "use strict";
 
     return BaseController.extend("delmex.zmmbascula.controller.Main", {
 
@@ -30,7 +31,6 @@ sap.ui.define([
             let _catalogsModel = this.getCatalogsModel();
             this.getView().setModel(_catalogsModel, "catalogsModel");
             sap.ui.getCore().setModel(_catalogsModel, "catalogsModel"); // ✅ Necesario para que el formatter funcione globalmente
-
 
 
         },
@@ -53,8 +53,12 @@ sap.ui.define([
             var _filters = this.getFilters();
             var _that = this;
             var _oModel = this.getView().getModel("zbasc");
-            const _url = "/Z_ALTA_Set";
+            const _url = "/Folio";
             var detailsModel = new JSONModel();
+
+            
+
+
 
             _oModel.read(_url, {
                 filters: _filters,

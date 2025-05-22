@@ -10,21 +10,21 @@ sap.ui.define([
 
             console.log("base controller");
         },
-        getRouter: function(){
+        getRouter: function () {
             return sap.ui.core.UIComponent.getRouterFor(this);
         },
 
-        goBack: function(){
+        goBack: function () {
             var sPreviousHash = sap.ui.core.routing.History.getInstance().getPreviousHash();
-            if(sPreviousHash !== undefined){
+            if (sPreviousHash !== undefined) {
                 history.go(-1);
-            }else{
+            } else {
                 var _bReplace = true;
                 this.getRouter().navTo("RouteMain");
             }
         },
 
-        getRequestModel(){
+        getRequestModel() {
             let _requestModel = new JSONModel({
                 "centro_ent": "",
                 "tipo_ticket": "",
@@ -37,7 +37,7 @@ sap.ui.define([
             return _requestModel;
         },
 
-        getCatalogsModel(){
+        getCatalogsModel() {
 
             let _catalogsModel = new JSONModel({
                 Proceso: {
@@ -58,16 +58,44 @@ sap.ui.define([
 
         },
 
-        detailSettingsModel(){
+        detailSettingsModel() {
             let _detailSettings = new JSONModel({
                 falg_oc: false,
                 flag_ov: false
             });
 
             return _detailSettings;
-        }
+        },
 
-      
+        getResourceBundle: function () {
+            return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+        },
+
+        _fetchCsrfToken: function (sUrl) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: sUrl,
+                    method: "GET",
+                    headers: {
+                        "X-CSRF-Token": "Fetch",
+                        "Accept": "application/json"
+                    },
+                    success: function (_data, _status, xhr) {
+                        let sToken = xhr.getResponseHeader("X-CSRF-Token");
+                        if (sToken) {
+                            resolve(sToken);
+                        } else {
+                            reject("No se recibió el token CSRF.");
+                        }
+                    },
+                    error: reject
+                });
+            });
+        }
+        
+
+
+
 
 
 
