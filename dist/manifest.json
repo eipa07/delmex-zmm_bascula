@@ -25,7 +25,23 @@
                     "odataVersion": "2.0"
                 }
             }
-        }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "bascula-display": {
+                    "semanticObject": "bascula",
+                    "action": "display",
+                    "title": "Báscula Delmex",
+                    "subTitle": "Gestión de tickets",
+                    "icon": "sap-icon://shipping-status",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        },
+        "navigationMode": "newWindow"
     },
     "sap.ui": {
         "technology": "UI5",
@@ -75,6 +91,11 @@
             "css": [
                 {
                     "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "lib/jspdf.js"
                 }
             ]
         },

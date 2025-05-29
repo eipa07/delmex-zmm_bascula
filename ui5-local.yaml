@@ -25,6 +25,8 @@ server:
       configuration:
         component: delmex.zmmbascula
         ui5Theme: sap_horizon
+        flp:
+          theme: sap_horizon
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:

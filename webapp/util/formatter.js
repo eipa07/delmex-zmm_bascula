@@ -74,12 +74,24 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
         getTipoTicketDescripcion: function (iValue) {
             const oCatalogs = sap.ui.getCore().getModel("catalogsModel").getProperty("/TipoTicket") || {};
             const value = oCatalogs[iValue];
+            console.log("Tipo Ticket: " + value)
             return value ? capitalize(value) : getNoDataText();
         },
 
         trimValue: function (sValue) {
             return sValue ? sValue.trim() : "";
-        }
+        },
+
+        formatNumberWithCommas: function (valor) {
+            if (valor === null || valor === undefined || isNaN(valor)) {
+              return "";
+            }
+          
+            const partes = valor.toString().split(".");
+            partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return partes.join(".");
+          }
+          
         
     };
 });

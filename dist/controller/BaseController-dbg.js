@@ -91,7 +91,57 @@ sap.ui.define([
                     error: reject
                 });
             });
-        }
+        },
+
+
+        get_JSON_PDF(){
+
+
+
+            return {
+                "Structure": {
+                    "Header": {
+                        "Line1": "AV. ÁNGEL MARTÍNEZ VILLAREAL #637 INT. S2",
+                        "Line2": "COL. CHEPEVERA C.P. 64030 MONTERREY N. L. MÉXICO",
+                        "Line3": "RFC GDE091112HA8",
+                        "Line4": "LIBRAMIENTO NOROESTE # 4030, PARQUE INDUSTRIAL ESCOBEDO",
+                        "Line5": "GENERAL ESCOBEDO, N.L. C.P. 66072",
+                        "Line6": "TEL: (81) 4057 5110",
+                        "Line7": "E-MAIL: CALIDAD@DELMEX.MX CREDITOS@DELMEX.MX",
+                        "Line8": "WWW.DELMEX.MX" 
+                    },
+            
+                    "Body": {
+                        "Folio": "FOLIO ",
+                        "Placa": "PLACA ",
+                        "Bound": "BOUND ",
+                        "Fecha_Hora_SALIDA_1": "FECHA Y HORA ",
+                        "Bruto": "BRUTO ",
+                        "Called_Neto": "CALLED NETO ",
+                        "Fecha_Hora_SALIDA_2": "DE SALIDA "
+                    },
+                    "Footer": {
+                        "Nombre": "NOMBRE ",
+                        "Referencia_Material": "REFERENCIA DE MATERIAL ",
+                        "No_Doc": "NO. DE DOCUMENTO "
+                    },
+            
+                    "Helpers": {
+                        "Line": "___________________________"
+                    }
+                }
+            }
+        },
+
+        formatNumberWithCommas: function (valor) {
+            if (valor === null || valor === undefined || isNaN(valor)) {
+              return "";
+            }
+          
+            const partes = valor.toString().split(".");
+            partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return partes.join(".");
+          }
         
 
 

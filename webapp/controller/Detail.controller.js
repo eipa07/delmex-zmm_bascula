@@ -19,6 +19,8 @@ sap.ui.define([
      * @param {typeof delmex.zmmbascula.util.formatter} formatter
      */
 
+    // Num doc: 80005849
+
 
     return BaseController.extend("delmex.zmmbascula.controller.Detail", {
 
@@ -36,7 +38,9 @@ sap.ui.define([
             this.getView().addDependent(this._pdfViewer);
 
             var _pdfStructureModel = new sap.ui.model.json.JSONModel();
-            _pdfStructureModel.loadData("./model/PDF_Structure.json", false);
+            let _jsonPDF = this.get_JSON_PDF();
+            //_pdfStructureModel.loadData("./model/PDF_Structure.json", false);
+            _pdfStructureModel.setData(_jsonPDF);
             this.getView().setModel(_pdfStructureModel, "pdfStructureModel");
 
             let _settingsModel = this.detailSettingsModel();
@@ -83,8 +87,9 @@ sap.ui.define([
 
 
         onShowPDF: function () {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+            //const { jsPDF } = window.jspdf;
+            
+            var doc = new jsPDF();
             var _pdf = this.getView().getModel("pdfStructureModel").getData().Structure;
             var _basculaDetails = this.getView().getModel("basculaDetails").getData();
 
@@ -168,6 +173,10 @@ sap.ui.define([
                 var _fechaSalida_2 = _pdf.Body.Fecha_Hora_SALIDA_2;
 
 
+                // Separador de miles
+                _basculaDetails.Pesaje = this.formatter.formatNumberWithCommas(_basculaDetails.Pesaje.trim());
+                _basculaDetails.Pesaje2 = this.formatter.formatNumberWithCommas(_basculaDetails.Pesaje2.trim());
+                _basculaDetails.PesoNeto = this.formatter.formatNumberWithCommas(_basculaDetails.PesoNeto.trim());
 
 
 
@@ -226,7 +235,7 @@ sap.ui.define([
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 251);
 
                 doc.text(_placa, _marginLeft, 260);
-                doc.text(_basculaDetails.Folio.trim(), 60, 260);
+                doc.text(_basculaDetails.Placa.trim(), 60, 260);
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 261);
 
 
@@ -318,9 +327,11 @@ sap.ui.define([
                         sap.m.MessageToast.show(this.getResourceBundle().getText("message.actualizacion_exitosa"));
                         oODataModel.refresh(true);
                     },
-                    error: (oError) => {
-                        console.error("❌ Error en PATCH:", oError);
-                        sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_patch"));
+                    error: (oError, oMensaje) => {
+                        let _mensaje = oError.responseJSON.error.message.value;
+                        console.log("_mensaje: ", _mensaje);
+                        //sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_patch"));
+                        sap.m.MessageBox.error(_mensaje);
                     }
                 });
                 
@@ -328,7 +339,7 @@ sap.ui.define([
             } catch (oError) {
                 // Si falló la obtención del token CSRF
                 console.error("❌ Error obteniendo CSRF Token:", oError);
-                sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_csrf"));
+                //sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_csrf"));
             }
         }
 

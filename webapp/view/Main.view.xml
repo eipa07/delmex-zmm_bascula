@@ -8,7 +8,7 @@
     xmlns:core="sap.ui.core"
     xmlns:svm="sap.ui.comp.smartvariants"
 >
-    <tnt:ToolHeader>
+    <!--  <tnt:ToolHeader>
         <ToolbarSpacer />
         <Title
             titleStyle="H4"
@@ -17,7 +17,7 @@
             id="titleText"
         />
         <ToolbarSpacer />
-    </tnt:ToolHeader>
+    </tnt:ToolHeader> -->
     <f:DynamicPage headerExpanded="{/headerExpanded}">
         <f:header>
             <f:DynamicPageHeader>
@@ -31,6 +31,21 @@
                         afterVariantLoad=".onAfterVariantLoad"
                     >
                         <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                name="Folio"
+                                label="Folio"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputFolio"
+                                        placeholder="Buscar Folio"
+                                        value="{requestModel>/Folio}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
                             <fb:FilterGroupItem
                                 name="Centro_ent"
                                 label="Centro Ent"
@@ -67,7 +82,7 @@
                                 <fb:control>
                                     <Input
                                         name="inputCentro_sal"
-                                        placeholder="Centro Sal"
+                                        placeholder="Buscar Centro Sal"
                                         value="{requestModel>/centro_sal}"
                                     />
                                 </fb:control>
@@ -81,8 +96,94 @@
                                 <fb:control>
                                     <Input
                                         name="inputMaterial"
-                                        placeholder="Material"
+                                        placeholder="Buscar Material"
                                         value="{requestModel>/material}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem
+                                name="NumeroDoc"
+                                label="Numero de Documento"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputNumDoc"
+                                        placeholder="Numero de Documento"
+                                        value="{requestModel>/NumeroDoc}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem
+                                name="Placa"
+                                label="Placa"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <Input
+                                        name="inputPlaca"
+                                        placeholder="Buscar Placa"
+                                        value="{requestModel>/Placa}"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem
+                                name="FechaEntrada"
+                                label="Fecha entrada báscula"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <!-- <Input
+                                        name="inputFechaEntrada"
+                                       placeholder="Buscar Fecha entrada báscula"
+                                        value="{requestModel>/FechaEntBas}"
+                                    /> -->
+                                    <DateTimePicker
+                                        id="DTPFechaEntradaBas"
+                                        value="{
+                                            'path': 'requestModel>/FechaEntBas',
+                                            'type': 'sap.ui.model.type.DateTime',
+                                            'formatOptions': {
+                                                'pattern': 'd/M/yyyy h:mm a'
+                                            }
+                                        }"
+                                        secondaryCalendarType="Gregorian"
+                                        change="handleChange"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem
+                                name="FechaSalida"
+                                label="Fecha salida báscula"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <!-- <Input
+                                        name="inputFechaSalida"
+                                        placeholder="Buscar Fecha salida báscula"
+                                        value="{requestModel>/FechaSalBas}"
+                                    /> -->
+                                    <DateTimePicker
+                                        id="DTP_FechaSalidaBas"
+                                        value="{
+                                            'path': 'requestModel>/FechaSalBas',
+                                            'type': 'sap.ui.model.type.DateTime',
+                                            'formatOptions': {
+                                                'pattern': 'd/M/yyyy h:mm a'
+                                            }
+                                        }"
+                                        secondaryCalendarType="Gregorian"
+                                        change="handleChange"
+                                        class="sapUiSmallMarginBottom"
                                     />
                                 </fb:control>
                             </fb:FilterGroupItem>
@@ -93,48 +194,91 @@
         </f:header>
         <f:content>
             <Table
-    id="productsTable"
-    items="{detailsModel>/}"
-    headerText="Resultado"
-    growing="true"
-    growingScrollToLoad="true"
-    width="100%"
->
-    <columns>
-        <Column><Text text="Folio" /></Column>
-        <Column><Text text="Tipo ticket" /></Column>
-        <Column><Text text="Centro Ent" /></Column>
-        <Column><Text text="Centro Sal" /></Column>
-        <Column><Text text="Material" /></Column>
-        <Column><Text text="Proceso" /></Column>
-    </columns>
-    <items>
-        <ColumnListItem
-            type="Active"
-            vAlign="Middle"
-            press="navToDetail"
-        >
-            <cells>
-                <Text text="{detailsModel>Folio}" />
-                <Text text="{
+                id="productsTable"
+                items="{detailsModel>/}"
+                headerText="Resultado"
+                growing="true"
+                growingScrollToLoad="true"
+                width="100%"
+            >
+                <columns>
+                    <Column>
+                        <Text text="Folio" />
+                    </Column>
+                    <Column>
+                        <Text text="Tipo ticket" />
+                    </Column>
+                    <Column>
+                        <Text text="Centro Ent" />
+                    </Column>
+                    <Column>
+                        <Text text="Centro Sal" />
+                    </Column>
+                    <Column>
+                        <Text text="Material" />
+                    </Column>
+                    <Column>
+                        <Text text="Proceso" />
+                    </Column>
+                    <Column>
+                        <Text text="Numero Documento" />
+                    </Column>
+                    <Column>
+                        <Text text="Placa" />
+                    </Column>
+                    <Column>
+                        <Text text="Fecha Ent Bascula" />
+                    </Column>
+                    <Column>
+                        <Text text="Fecha Sal Báscula" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        type="Active"
+                        vAlign="Middle"
+                        press="navToDetail"
+                    >
+                        <cells>
+                            <Text text="{detailsModel>Folio}" />
+                            <Text
+                                text="{
                     parts: ['detailsModel>Tipoticket'],
                     formatter: '.formatter.getTipoTicketDescripcion'
-                }" />
-                <Text text="{detailsModel>CentroEnt}" />
-                <Text text="{detailsModel>CentroSal}" />
-                <Text text="{
+                }"
+                            />
+                            <Text text="{detailsModel>CentroEnt}" />
+                            <Text text="{detailsModel>CentroSal}" />
+                            <Text
+                                text="{
                     parts: ['detailsModel>Material'],
                     formatter: '.formatter.emptyValue'
-                }" />
-                <Text text="{
+                }"
+                            />
+                            <Text
+                                text="{
                     parts: ['detailsModel>Proceso'],
                     formatter: '.formatter.getProcesoDescripcion'
-                }" />
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
-
+                }"
+                            />
+                            <Text text="{detailsModel>NumeroDoc}" />
+                            <Text text="{detailsModel>Placa}" />
+                            <Text
+                                text="{
+                    parts: ['detailsModel>FechaEntBas'],
+                    formatter: '.formatter.formatDate'
+                }"
+                            />
+                            <Text
+                                text="{
+                    parts: ['detailsModel>FechaEntBas'],
+                    formatter: '.formatter.formatDate'
+                }"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
         </f:content>
     </f:DynamicPage>
 </mvc:View>
