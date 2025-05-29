@@ -74,6 +74,7 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
         getTipoTicketDescripcion: function (iValue) {
             const oCatalogs = sap.ui.getCore().getModel("catalogsModel").getProperty("/TipoTicket") || {};
             const value = oCatalogs[iValue];
+            console.log("Tipo Ticket: " + value)
             return value ? capitalize(value) : getNoDataText();
         },
 

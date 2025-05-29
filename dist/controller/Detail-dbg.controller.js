@@ -174,9 +174,9 @@ sap.ui.define([
 
 
                 // Separador de miles
-                _basculaDetails.Pesaje = this.formatNumberWithCommas(_basculaDetails.Pesaje.trim());
-                _basculaDetails.Pesaje2 = this.formatNumberWithCommas(_basculaDetails.Pesaje2.trim());
-                _basculaDetails.PesoNeto = this.formatNumberWithCommas(_basculaDetails.PesoNeto.trim());
+                _basculaDetails.Pesaje = this.formatter.formatNumberWithCommas(_basculaDetails.Pesaje.trim());
+                _basculaDetails.Pesaje2 = this.formatter.formatNumberWithCommas(_basculaDetails.Pesaje2.trim());
+                _basculaDetails.PesoNeto = this.formatter.formatNumberWithCommas(_basculaDetails.PesoNeto.trim());
 
 
 

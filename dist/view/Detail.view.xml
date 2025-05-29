@@ -57,7 +57,10 @@
                         <f:FormElement label="{i18n>detailView.tipo_ticket}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/Tipoticket}"
+                                    text="{
+                                    parts: ['basculaDetails>/Tipoticket'],
+                                    formatter: '.formatter.getTipoTicketDescripcion'
+                                }"
                                     id="txt_Tipoticket"
                                 />
                             </f:fields>
@@ -147,7 +150,7 @@
                         <f:FormElement label="{i18n>detailView.pesaje}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/Pesaje}"
+                                    text="{path: 'basculaDetails>/Pesaje', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_Pesaje"
                                 />
                             </f:fields>
@@ -165,7 +168,7 @@
                         <f:FormElement label="{i18n>detailView.pesaje2}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/Pesaje2}"
+                                    text="{path: 'basculaDetails>/Pesaje2', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_Pesaje2"
                                 />
                             </f:fields>
@@ -174,7 +177,7 @@
                         <f:FormElement label="{i18n>detailView.peso_neto}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/PesoNeto}"
+                                    text="{path: 'basculaDetails>/PesoNeto', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_PesoNeto"
                                 />
                             </f:fields>
@@ -183,7 +186,7 @@
                         <f:FormElement label="{i18n>detailView.peso_teorico}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/PesoTeorico}"
+                                    text="{path: 'basculaDetails>/PesoTeorico', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_PesoTeorico"
                                 />
                             </f:fields>
@@ -192,7 +195,7 @@
                         <f:FormElement label="{i18n>detailView.diferencia}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/Diferencia}"
+                                    text="{path: 'basculaDetails>/Diferencia', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_Diferencia"
                                 />
                             </f:fields>
@@ -201,7 +204,7 @@
                         <f:FormElement label="{i18n>detailView.valor}">
                             <f:fields>
                                 <Text
-                                    text="{basculaDetails>/Valor}"
+                                    text="{path: 'basculaDetails>/Valor', formatter: '.formatter.formatNumberWithCommas'}"
                                     id="txt_Valor"
                                 />
                             </f:fields>
@@ -224,6 +227,7 @@
                                         path: 'basculaDetails>/NumeroDoc',
                                         formatter: '.formatter.removeSpaces'
                                     }"
+                                    editable="{= ${basculaDetails>/RegIncompleto} !== 'X' }"
                                     id="txt_NumeroDoc"
                                     width="50%"
                                     placeholder="{i18n>detailView.numero_doc.placeholder}"

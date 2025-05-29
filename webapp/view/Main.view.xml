@@ -144,13 +144,13 @@
                                        placeholder="Buscar Fecha entrada báscula"
                                         value="{requestModel>/FechaEntBas}"
                                     /> -->
-                                    <DateTimePicker
+                                    <DatePicker
                                         id="DTPFechaEntradaBas"
                                         value="{
                                             'path': 'requestModel>/FechaEntBas',
-                                            'type': 'sap.ui.model.type.DateTime',
+                                            'type': 'sap.ui.model.type.Date',
                                             'formatOptions': {
-                                                'pattern': 'd/M/yyyy h:mm a'
+                                                'pattern': 'd/M/yyyy'
                                             }
                                         }"
                                         secondaryCalendarType="Gregorian"
@@ -172,18 +172,17 @@
                                         placeholder="Buscar Fecha salida báscula"
                                         value="{requestModel>/FechaSalBas}"
                                     /> -->
-                                    <DateTimePicker
+                                    <DatePicker
                                         id="DTP_FechaSalidaBas"
                                         value="{
-                                            'path': 'requestModel>/FechaSalBas',
-                                            'type': 'sap.ui.model.type.DateTime',
+                                            'path':'requestModel>/FechaSalBas',
+                                            'type':'sap.ui.model.type.Date',
                                             'formatOptions': {
-                                                'pattern': 'd/M/yyyy h:mm a'
+                                                'pattern': 'yyyy-MM-dd'
                                             }
                                         }"
-                                        secondaryCalendarType="Gregorian"
                                         change="handleChange"
-                                        class="sapUiSmallMarginBottom"
+					                    class="sapUiSmallMarginBottom"
                                     />
                                 </fb:control>
                             </fb:FilterGroupItem>

@@ -26,12 +26,15 @@ sap.ui.define([
 
         getRequestModel() {
             let _requestModel = new JSONModel({
-                "centro_ent": "",
-                "tipo_ticket": "",
-                "centro_sal": "",
-                "material": ""
-
-
+                Folio: "",
+                CentroEnt: "",
+                Tipoticket: "",
+                CentroSal: "",
+                Material: "",
+                NumeroDoc: "",
+                Placa: "",
+                FechaEntBas: "",
+                FechaSalBas: ""
             });
 
             return _requestModel;
@@ -94,7 +97,7 @@ sap.ui.define([
         },
 
 
-        get_JSON_PDF(){
+        get_JSON_PDF() {
 
 
 
@@ -108,9 +111,9 @@ sap.ui.define([
                         "Line5": "GENERAL ESCOBEDO, N.L. C.P. 66072",
                         "Line6": "TEL: (81) 4057 5110",
                         "Line7": "E-MAIL: CALIDAD@DELMEX.MX CREDITOS@DELMEX.MX",
-                        "Line8": "WWW.DELMEX.MX" 
+                        "Line8": "WWW.DELMEX.MX"
                     },
-            
+
                     "Body": {
                         "Folio": "FOLIO ",
                         "Placa": "PLACA ",
@@ -125,7 +128,7 @@ sap.ui.define([
                         "Referencia_Material": "REFERENCIA DE MATERIAL ",
                         "No_Doc": "NO. DE DOCUMENTO "
                     },
-            
+
                     "Helpers": {
                         "Line": "___________________________"
                     }
@@ -133,16 +136,18 @@ sap.ui.define([
             }
         },
 
-        formatNumberWithCommas: function (valor) {
-            if (valor === null || valor === undefined || isNaN(valor)) {
-              return "";
-            }
-          
-            const partes = valor.toString().split(".");
-            partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return partes.join(".");
-          }
-        
+        buildDate(oDate) {
+
+            let oMonth = parseInt(oDate.getMonth()) + 1;
+            oMonth = oMonth <= 9 ? "0" + oMonth.toString() : oMonth.toString();
+            let oDay = parseInt(oDate.getDate());
+            oDay = oDay <= 9 ? "0" + oDay.toString() : oDay.toString();
+            let _returnDate = oDate.getFullYear().toString() + oMonth.toString() + oDay;
+
+            return _returnDate;
+
+        }
+
 
 
 

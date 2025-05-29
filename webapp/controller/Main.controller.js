@@ -111,10 +111,12 @@ sap.ui.define([
                 aFilters.push(new Filter("Placa", FilterOperator.Contains, oPlaca));
             }
             if (oFechaEntBas) {
-                aFilters.push(new Filter("FechaEntBas", FilterOperator.Contains, oFechaEntBas));
+                let _FechaEntBas = this.buildDate(oFechaEntBas);
+                aFilters.push(new Filter("FechaEntBas", FilterOperator.Contains, _FechaEntBas));
             }
             if (oFechaSalBas) {
-                aFilters.push(new Filter("FechaSalBas", FilterOperator.Contains, oFechaSalBas));
+                let _FechaSalBas = this.buildDate(oFechaSalBas);
+                aFilters.push(new Filter("FechaSalBas", FilterOperator.Contains, _FechaSalBas));
             }
 
 

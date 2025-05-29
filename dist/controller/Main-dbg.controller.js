@@ -75,25 +75,50 @@ sap.ui.define([
 
         getFilters() {
 
-            var aFilters = [];
+            let aFilters = [];
 
-            var _centro_ent = this.getView().getModel("requestModel").getProperty("/centro_ent");
-            var _tipo_ticket = this.getView().getModel("requestModel").getProperty("/tipo_ticket");
-            var _centro_sal = this.getView().getModel("requestModel").getProperty("/centro_sal");
-            var _material = this.getView().getModel("requestModel").getProperty("/material");
+            let oFolio = this.getView().getModel("requestModel").getProperty("/Folio");
+            let oCentroEnt = this.getView().getModel("requestModel").getProperty("/CentroEnt");
+            let oTipoticket = this.getView().getModel("requestModel").getProperty("/Tipoticket");
+            let oCentroSal = this.getView().getModel("requestModel").getProperty("/CentroSal");
+            let oMaterial = this.getView().getModel("requestModel").getProperty("/Material");
 
-            if (_centro_ent) {
-                aFilters.push(new Filter("CentroEnt", FilterOperator.EQ, _centro_ent));
+            let oNumeroDoc = this.getView().getModel("requestModel").getProperty("/NumeroDoc");
+            let oPlaca = this.getView().getModel("requestModel").getProperty("/Placa");
+            let oFechaEntBas = this.getView().getModel("requestModel").getProperty("/FechaEntBas");
+            let oFechaSalBas = this.getView().getModel("requestModel").getProperty("/FechaSalBas");
+
+
+            if (oFolio) {
+                aFilters.push(new Filter("Folio", FilterOperator.EQ, oFolio));
             }
-            if (_tipo_ticket) {
-                aFilters.push(new Filter("Tipoticket", FilterOperator.EQ, _tipo_ticket));
+            if (oCentroEnt) {
+                aFilters.push(new Filter("CentroEnt", FilterOperator.EQ, oCentroEnt));
             }
-            if (_centro_sal) {
-                aFilters.push(new Filter("CentroSal", FilterOperator.EQ, _centro_sal));
+            if (oTipoticket) {
+                aFilters.push(new Filter("Tipoticket", FilterOperator.EQ, oTipoticket));
             }
-            if (_material) {
-                aFilters.push(new Filter("Material", FilterOperator.EQ, _material));
+            if (oCentroSal) {
+                aFilters.push(new Filter("CentroSal", FilterOperator.EQ, oCentroSal));
             }
+            if (oMaterial) {
+                aFilters.push(new Filter("Material", FilterOperator.Contains, oMaterial));
+            }
+            if (oNumeroDoc) {
+                aFilters.push(new Filter("NumeroDoc", FilterOperator.EQ, oNumeroDoc));
+            }
+            if (oPlaca) {
+                aFilters.push(new Filter("Placa", FilterOperator.Contains, oPlaca));
+            }
+            if (oFechaEntBas) {
+                let _FechaEntBas = this.buildDate(oFechaEntBas);
+                aFilters.push(new Filter("FechaEntBas", FilterOperator.Contains, _FechaEntBas));
+            }
+            if (oFechaSalBas) {
+                let _FechaSalBas = this.buildDate(oFechaSalBas);
+                aFilters.push(new Filter("FechaSalBas", FilterOperator.Contains, _FechaSalBas));
+            }
+
 
             return aFilters;
 
