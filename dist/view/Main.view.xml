@@ -97,7 +97,7 @@
                                     <Input
                                         name="inputMaterial"
                                         placeholder="Buscar Material"
-                                        value="{requestModel>/material}"
+                                        value="{requestModel>/Material}"
                                     />
                                 </fb:control>
                             </fb:FilterGroupItem>

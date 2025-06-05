@@ -4,7 +4,8 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    'sap/ui/core/BusyIndicator'
 ]
 
 /**
@@ -14,9 +15,10 @@ sap.ui.define([
      * @param {typeof sap.ui.model.Filter} Filter 
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator 
      * @param {typeof sap.m.MessageBox} MessageBox
+     * @param {typeof sap.ui.core.BusyIndicator} BusyIndicator
      */
 
-, (BaseController, formatter, JSONModel, Filter, FilterOperator, MessageBox) => {
+, (BaseController, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyIndicator) => {
     "use strict";
 
     return BaseController.extend("delmex.zmmbascula.controller.Main", {
@@ -42,6 +44,8 @@ sap.ui.define([
              var oBindingContext = oItem.getBindingContext("detailsModel");
             var _odata = oBindingContext.getProperty(oBindingContext.getPath()); // Obtener solo el folio de la posicion del odata seleccioando
             var _folio = _odata.Folio;
+            console.log("Master busy");
+            BusyIndicator.show(5000); 
             this.getRouter().navTo("RouteDetail", {
                 folio: _folio
             }, false);
@@ -49,6 +53,8 @@ sap.ui.define([
         },
 
         onSearch() {
+
+            BusyIndicator.show(5000);
 
             var _filters = this.getFilters();
             var _that = this;
@@ -65,8 +71,11 @@ sap.ui.define([
                 success: function (oData, Result) {                  
                     detailsModel.setData(oData.results);
                     _that.getView().setModel(detailsModel, "detailsModel");
+
+                    BusyIndicator.hide();
                 }, error: function (oError) {
                     sap.m.MessageBox.error(oError);
+                    BusyIndicator.hide();
                 }
             });
 

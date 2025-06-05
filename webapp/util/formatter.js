@@ -24,7 +24,7 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
     return {
 
         formatDate: function (value) {
-            console.log("formatter: " + value);
+            //console.log("formatter: " + value);
             if (!value || value.length < 15) {
                 return getNoDataText();
             }
@@ -50,7 +50,7 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
                 pattern: "dd/MM/yyyy HH:mm:ss"
             });
 
-            console.log(oDateFormat.format(jsDate));
+            //console.log(oDateFormat.format(jsDate));
             return oDateFormat.format(jsDate);
         },
 
@@ -74,7 +74,7 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
         getTipoTicketDescripcion: function (iValue) {
             const oCatalogs = sap.ui.getCore().getModel("catalogsModel").getProperty("/TipoTicket") || {};
             const value = oCatalogs[iValue];
-            console.log("Tipo Ticket: " + value)
+            //console.log("Tipo Ticket: " + value)
             return value ? capitalize(value) : getNoDataText();
         },
 
@@ -84,7 +84,7 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
 
         formatNumberWithCommas: function (valor) {
             if (valor === null || valor === undefined || isNaN(valor)) {
-              return "";
+              return "0.00";
             }
           
             const partes = valor.toString().split(".");
