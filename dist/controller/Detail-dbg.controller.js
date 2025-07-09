@@ -83,7 +83,7 @@ sap.ui.define([
 
         _onObjectMatched: async function (oEvent) {
             const sFolio = oEvent.getParameter("arguments").folio;
-        
+
             try {
                 const oData = await this.loadFolioData(sFolio);
                 // Puedes usar oData si necesitas hacer algo adicional
@@ -92,7 +92,7 @@ sap.ui.define([
                 console.error("Fallo al cargar el folio:", oError);
             }
         },
-        
+
 
         goBackBtn() {
             this.goBack();
@@ -100,14 +100,14 @@ sap.ui.define([
 
 
         onShowPDF: function () {
-            
+
             var _basculaDetails = this.getView().getModel("basculaDetails").getData();
             const c_buildPDF = true;
 
             /** Volver a cargar los datos desde backend */
             this.loadFolioData(_basculaDetails.Folio, c_buildPDF);
 
-           
+
         },
 
         loadImageAsBase64: function (src, callback) {
@@ -130,6 +130,9 @@ sap.ui.define([
     * Utiliza una llamada jQuery.ajax con CSRF token manual para cumplir con el backend ABAP.
     */
         onUpdateData: async function () {
+
+            debugger;
+
             // Obtener el modelo OData configurado en el manifest (zbasc)
             const oODataModel = this.getView().getModel("zbasc");
 
@@ -139,6 +142,8 @@ sap.ui.define([
             // Extraer el folio (clave de la entidad) y el valor de NumeroDoc desde la vista
             const sFolio = oJSONModel?.getData()?.Folio;
             const sNumeroDoc = this.getView().byId("txt_NumeroDoc").getValue();
+
+
 
             // Validación: ambos valores son obligatorios
             if (!sFolio || !sNumeroDoc) {
@@ -162,6 +167,8 @@ sap.ui.define([
                 const sServiceUrl = this._getServiceUrl() + "/Folio('0')";
                 const sToken = await this._fetchCsrfToken(sServiceUrl);
 
+
+
                 // Enviar la petición PATCH usando jQuery.ajax
                 await $.ajax({
                     url: sPAtchrequest, // ej: /sap/opu/odata/sap/ZUI_BASCULA_SRV_V2/Alta('123')
@@ -177,14 +184,15 @@ sap.ui.define([
                     success: () => {
                         sap.m.MessageToast.show(this.getResourceBundle().getText("message.actualizacion_exitosa"));
                         oODataModel.refresh(true);
+                        /** Actuializar datos desde backend  segundo parametro es para no generar PDF*/
+                        this.loadFolioData(sFolio, false);
                     },
                     error: (oError, oMensaje) => {
                         let _mensaje = oError.responseJSON.error.message.value;
-                        //sap.m.MessageBox.error(this.getResourceBundle().getText("message.error_patch"));
                         sap.m.MessageBox.error(_mensaje);
                     }
                 });
-                
+
 
             } catch (oError) {
                 // Si falló la obtención del token CSRF
@@ -193,8 +201,8 @@ sap.ui.define([
             }
         },
 
-        onBeforeRendering(){
-            
+        onBeforeRendering() {
+
         }
 
 

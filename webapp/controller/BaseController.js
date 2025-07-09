@@ -105,14 +105,14 @@ sap.ui.define([
             return {
                 "Structure": {
                     "Header": {
-                        "Line1": "AV. ÁNGEL MARTÍNEZ VILLAREAL #637 INT. S2",
-                        "Line2": "COL. CHEPEVERA C.P. 64030 MONTERREY N. L. MÉXICO",
-                        "Line3": "RFC GDE091112HA8",
-                        "Line4": "LIBRAMIENTO NOROESTE # 4030, PARQUE INDUSTRIAL ESCOBEDO",
-                        "Line5": "GENERAL ESCOBEDO, N.L. C.P. 66072",
-                        "Line6": "TEL: (81) 4057 5110",
-                        "Line7": "E-MAIL: CALIDAD@DELMEX.MX CREDITOS@DELMEX.MX",
-                        "Line8": "WWW.DELMEX.MX"
+                        "Line1": "TICKET DE BASCULA",
+                        "Line2": "LIBRAMIENTO SALTILLO - LAREDO #4030 GENERAL ESCOBEDO,",
+                        "Line3": "N.L. C,P, 66072",
+                        "Line4": "TEL: (81) 4057 5110",
+                        "Line5": "WWW.DELMEX.MX",
+                        "Line6": "",
+                        "Line7": "",
+                        "Line8": ""
                     },
 
                     "Body": {
@@ -272,8 +272,8 @@ sap.ui.define([
                 doc.text(_pdf.Header.Line3, _header_line3_Center, 80);
                 doc.text(_pdf.Header.Line4, _header_line4_Center, 85);
                 doc.text(_pdf.Header.Line5, _header_line5_Center, 90);
-                doc.text(_pdf.Header.Line6, _header_line6_Center, 95);
-                doc.text(_pdf.Header.Line7, _header_line7_Center, 100);
+                //doc.text(_pdf.Header.Line6, _header_line6_Center, 95);
+                //doc.text(_pdf.Header.Line7, _header_line7_Center, 100);
 
 
                 doc.setFontSize(_bodySize); /** Tamaño de fuente */

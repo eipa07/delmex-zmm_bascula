@@ -32,7 +32,7 @@ sap.ui.define([
 
             let _catalogsModel = this.getCatalogsModel();
             this.getView().setModel(_catalogsModel, "catalogsModel");
-            sap.ui.getCore().setModel(_catalogsModel, "catalogsModel"); // ✅ Necesario para que el formatter funcione globalmente
+            sap.ui.getCore().setModel(_catalogsModel, "catalogsModel"); 
 
 
         },

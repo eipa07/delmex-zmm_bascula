@@ -83,6 +83,12 @@ sap.ui.define(["sap/ui/core/format/DateFormat", "sap/ui/model/resource/ResourceM
         },
 
         formatNumberWithCommas: function (valor) {
+            
+                console.log(valor);
+                valor = parseFloat(valor);
+                console.log(valor);
+            
+            
             if (valor === null || valor === undefined || isNaN(valor)) {
               return "0.00";
             }

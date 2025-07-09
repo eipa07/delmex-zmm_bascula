@@ -105,7 +105,7 @@ sap.ui.define([
             return {
                 "Structure": {
                     "Header": {
-                        "Line1": "AV. ÁNGEL MARTÍNEZ VILLAREAL #637 INT. S2",
+                        "Line1": "AV. ÁNGEL MARTÍNEZ VILLARREAL #637 INT. S2",
                         "Line2": "COL. CHEPEVERA C.P. 64030 MONTERREY N. L. MÉXICO",
                         "Line3": "RFC GDE091112HA8",
                         "Line4": "LIBRAMIENTO NOROESTE # 4030, PARQUE INDUSTRIAL ESCOBEDO",
@@ -120,9 +120,11 @@ sap.ui.define([
                         "Placa": "PLACA ",
                         "Bound": "BOUND ",
                         "Fecha_Hora_SALIDA_1": "FECHA Y HORA ",
+                        "Fecha_Hora_ENTRADA_1": "FECHA Y HORA ",
                         "Bruto": "BRUTO ",
                         "Called_Neto": "CALLED NETO ",
-                        "Fecha_Hora_SALIDA_2": "DE SALIDA "
+                        "Fecha_Hora_SALIDA_2": "DE SALIDA ",
+                        "Fecha_Hora_ENTRADA_2": "DE ENTRADA "
                     },
                     "Footer": {
                         "Nombre": "NOMBRE ",
@@ -289,11 +291,11 @@ sap.ui.define([
                 var _placa = _pdf.Body.Placa;
                 var _bruto1 = _pdf.Body.Bruto;
                 var _bound = _pdf.Body.Bound;
-                //var _fechaSalida_1 = _pdf.Body.Fecha_Hora_SALIDA_1 + _basculaDetails.FechaEntBas;
+                var _fechaEntrada_1 = _pdf.Body.Fecha_Hora_ENTRADA_1
                 var _fechaSalida_1 = _pdf.Body.Fecha_Hora_SALIDA_1;
                 var _bruto = _pdf.Body.Bruto;
                 var _called_Neto = _pdf.Body.Called_Neto;
-                //var _fechaSalida_2 = _pdf.Body.Fecha_Hora_SALIDA_1 + _basculaDetails.fecha_sal_bas;
+                var _fechaEntrada_2 = _pdf.Body.Fecha_Hora_ENTRADA_2;
                 var _fechaSalida_2 = _pdf.Body.Fecha_Hora_SALIDA_2;
 
 
@@ -319,9 +321,10 @@ sap.ui.define([
                 doc.text(_pdf.Helpers.Line, _marginLeft + 30, 156);
 
                 var _FechaEntBas = _that.formatter.formatDate(_basculaDetails.FechaEntBas);
+                var _FechaSalBas = _that.formatter.formatDate(_basculaDetails.FechaSalBas);
 
-                doc.text(_fechaSalida_1, _marginLeft, 165);
-                doc.text(_fechaSalida_2, _marginLeft, 170);
+                doc.text(_fechaEntrada_1, _marginLeft, 165);
+                doc.text(_fechaEntrada_2, _marginLeft, 170);
                 doc.text(_FechaEntBas, 60, 170);
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 171);
 
@@ -343,7 +346,7 @@ sap.ui.define([
 
                 doc.text(_fechaSalida_1, _marginLeft, 225);
                 doc.text(_fechaSalida_2, _marginLeft, 230);
-                doc.text(_FechaEntBas, 60, 230);
+                doc.text(_FechaSalBas, 60, 230);
                 doc.text(_pdf.Helpers.Line, _marginLeft + 40, 231);
 
                 // Footer
