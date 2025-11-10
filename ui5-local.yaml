@@ -33,8 +33,8 @@ server:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         backend:
           - path: /sap
-            url: https://my413406-api.s4hana.cloud.sap
-            destination: Bascula_v2
+            url: https://my416137-api.s4hana.cloud.sap
+            destination: Bascula_test
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:

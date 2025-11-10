@@ -5,7 +5,7 @@
     {
       "source": "^/sap/.*/(.*)$",
       "target": "/$1",
-      "destination": "Bascula_v2",
+      "destination": "Bascula_test",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

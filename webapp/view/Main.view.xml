@@ -270,7 +270,7 @@
                             />
                             <Text
                                 text="{
-                    parts: ['detailsModel>FechaEntBas'],
+                    parts: ['detailsModel>FechaSalBas'],
                     formatter: '.formatter.formatDate'
                 }"
                             />

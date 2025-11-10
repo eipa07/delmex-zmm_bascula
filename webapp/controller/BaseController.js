@@ -124,16 +124,24 @@ sap.ui.define([
                         "Bruto": "BRUTO ",
                         "Called_Neto": "CALLED NETO ",
                         "Fecha_Hora_SALIDA_2": "DE SALIDA ",
-                        "Fecha_Hora_ENTRADA_2": "DE ENTRADA "
+                        "Fecha_Hora_ENTRADA_2": "DE ENTRADA ",
+
+                        "Peso_De": "PESO DE",
+                        "Peso_Entrada": "ENTRADA ",
+                        "Peso_Salida": "SALIDA",
+                        "Neto": "NETO"
                     },
                     "Footer": {
-                        "Nombre": "NOMBRE ",
-                        "Referencia_Material": "REFERENCIA DE MATERIAL ",
-                        "No_Doc": "NO. DE DOCUMENTO "
+                        "Nombre": "NOMBRE: ",
+                        "Referencia_De": "REFERENCIA DE ",
+                        "Referencia_Material": "MATERIAL: ",
+                        "No_De": "NO. DE ",
+                        "No_Doc": "DOCUMENTO: "
                     },
 
                     "Helpers": {
-                        "Line": "___________________________"
+                        "Line": "___________________________",
+                        "FolioLine": "________________"
                     }
                 }
             }
@@ -184,15 +192,15 @@ sap.ui.define([
                         oFolioModel.setData(oData);
 
                         // Asignar el modelo a la vista con el nombre "basculaDetails"
-                        if(_that.getView().getModel("basculaDetails")){
+                        if (_that.getView().getModel("basculaDetails")) {
                             _that.getView().getModel("basculaDetails").setData();
-                           
+
                         }
-                        
+
                         _that.getView().setModel(oFolioModel, "basculaDetails");
                         debugger;
-                        
-                        if(c_buildPDF){
+
+                        if (c_buildPDF) {
                             _that.buildPDF(_that);
                         }
 
@@ -212,8 +220,8 @@ sap.ui.define([
         buildPDF: function (_that) {
             //const { jsPDF } = window.jspdf;
 
-            
-            
+
+
             var doc = new jsPDF();
             var _pdf = _that.getView().getModel("pdfStructureModel").getData().Structure;
             _that.getView().getModel("basculaDetails").refresh();
@@ -249,7 +257,8 @@ sap.ui.define([
             const _header_line7_Width = doc.getTextWidth(_pdf.Header.Line7);
             const _header_line7_Center = (pageWidth - _header_line7_Width) / 2;
 
-            var _folio = _pdf.Body.Folio + _basculaDetails.Folio;
+            var _folio_text = _pdf.Body.Folio;
+            var _folio = _basculaDetails.Folio;
 
 
 
@@ -278,9 +287,13 @@ sap.ui.define([
 
                 doc.setFontSize(_bodySize); /** Tamaño de fuente */
 
-                doc.text(_folio, pageWidth - (marginRight + 40), 115, {
+                doc.text(_folio_text, marginRight + 150, 115, {
                     align: "right"
                 });
+                doc.text(_folio, marginRight + 155, 115, {
+                    align: "right"
+                });
+                doc.text(_pdf.Helpers.FolioLine, marginRight + 149, 115);
 
 
                 /** Cuerpo del PDF */
@@ -300,7 +313,7 @@ sap.ui.define([
 
 
                 // Separador de miles
-                _basculaDetails.Pesaje = _that.formatter.formatNumberWithCommas(_basculaDetails.Pesaje.trim());
+                let oPesaje = _that.formatter.formatNumberWithCommas(_basculaDetails.Pesaje.trim());
                 _basculaDetails.Pesaje2 = _that.formatter.formatNumberWithCommas(_basculaDetails.Pesaje2.trim());
                 _basculaDetails.PesoNeto = _that.formatter.formatNumberWithCommas(_basculaDetails.PesoNeto.trim());
 
@@ -311,68 +324,113 @@ sap.ui.define([
                 doc.setFont("helvetica", "italic");    // fuente
 
 
-                doc.text(_placa, _marginLeft, 140); // X = 10 (desde el margen izquierdo)
-                doc.text(_basculaDetails.Placa, _marginLeft + 30, 140);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 141);
+                //doc.text(_placa, _marginLeft, 140); // X = 10 (desde el margen izquierdo)
+                doc.text(_pdf.Body.Peso_De, _marginLeft, 140); // X = 10 (desde el margen izquierdo)
+                doc.text(_pdf.Body.Peso_Entrada, _marginLeft, 145);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 145);
+                doc.text(oPesaje, _marginLeft + 40, 144);
 
-                doc.text(_bruto1, _marginLeft, 150);
-                doc.text(_bound, _marginLeft, 155);
-                doc.text(_basculaDetails.Pesaje.trim(), _marginLeft + 30, 155);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 156);
 
                 var _FechaEntBas = _that.formatter.formatDate(_basculaDetails.FechaEntBas);
                 var _FechaSalBas = _that.formatter.formatDate(_basculaDetails.FechaSalBas);
 
-                doc.text(_fechaEntrada_1, _marginLeft, 165);
-                doc.text(_fechaEntrada_2, _marginLeft, 170);
-                doc.text(_FechaEntBas, 60, 170);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 171);
-
-                doc.text(_placa, _marginLeft, 185);
-                doc.text(_basculaDetails.Placa.trim(), _marginLeft + 30, 185);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 186);
+                doc.text(_fechaEntrada_1, _marginLeft, 155);
+                doc.text(_fechaEntrada_2, _marginLeft, 160);
+                doc.text(_FechaEntBas, 60, 160);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 160);
 
 
-                doc.text(_bruto, _marginLeft, 200);
-                doc.text(_basculaDetails.Pesaje2.trim(), _marginLeft + 30, 200);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 201);
+                doc.text(_pdf.Body.Peso_De, _marginLeft, 170); // X = 10 (desde el margen izquierdo)
+                doc.text(_pdf.Body.Peso_Salida, _marginLeft, 175);
+                doc.text(_basculaDetails.Pesaje2, _marginLeft + 40, 175);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 175);
+
+
+                doc.text(_pdf.Body.Neto, _marginLeft, 185); // X = 10 (desde el margen izquierdo)
+                doc.text(_basculaDetails.PesoNeto, _marginLeft + 40, 185);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 185);
 
 
 
-                doc.text(_called_Neto, _marginLeft, 215);
-                doc.text(_basculaDetails.PesoNeto.trim(), _marginLeft + 40, 215);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 216);
+                doc.text(_fechaSalida_1, _marginLeft, 195);
+                doc.text(_fechaSalida_2, _marginLeft, 200);
+                doc.text(_FechaSalBas, 60, 200);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 200);
 
 
-                doc.text(_fechaSalida_1, _marginLeft, 225);
-                doc.text(_fechaSalida_2, _marginLeft, 230);
-                doc.text(_FechaSalBas, 60, 230);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 231);
+
 
                 // Footer
 
                 var _nombre = _pdf.Footer.Nombre;
+                var _referencia_De = _pdf.Footer.Referencia_De;
                 var _referencia_material = _pdf.Footer.Referencia_Material; // Orden de compra
+                var _no_de = _pdf.Footer.No_De; // Orden de venta
                 var _no_documento = _pdf.Footer.No_Doc; // Orden de venta
 
 
 
-                doc.text(_nombre, _marginLeft, 250);
-                doc.text(_basculaDetails.Conductor, 60, 250);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 251);
-
-                doc.text(_placa, _marginLeft, 260);
-                doc.text(_basculaDetails.Placa.trim(), 60, 260);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 261);
+                doc.text(_nombre, _marginLeft, 225);
+                doc.text(_basculaDetails.Conductor, 60, 225);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 225);
 
 
-                doc.text(_referencia_material.trim(), _marginLeft, 270);
-                doc.text(_basculaDetails.Material.trim(), 90, 270); // OC => NumeroDoc
-                doc.text(_pdf.Helpers.Line, 90, 271);
+                doc.text(_placa, _marginLeft, 235);
+                doc.text(_basculaDetails.Placa.trim(), _marginLeft + 40, 235);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 235);
 
-                doc.text(_no_documento.trim(), _marginLeft, 280);
-                doc.text(_basculaDetails.NumeroDoc.trim(), _marginLeft + 50, 280);
-                doc.text(_pdf.Helpers.Line, _marginLeft + 50, 281);
+
+                doc.text(_referencia_De.trim(), _marginLeft, 245);
+                doc.text(_referencia_material.trim(), _marginLeft, 250);
+                doc.text(_basculaDetails.Material.trim(), _marginLeft + 40, 250); // OC => NumeroDoc
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 250);
+
+
+
+                doc.text(_no_de.trim(), _marginLeft, 260);
+                doc.text(_no_documento.trim(), _marginLeft, 265);
+                doc.text(_basculaDetails.NumeroDoc.trim(), _marginLeft + 40, 265);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 265);
+
+
+
+
+
+                //doc.text(_basculaDetails.Placa, _marginLeft + 30, 140);
+
+
+                doc.text(_bruto1, _marginLeft + 100, 300);
+                doc.text(_bound, _marginLeft + 100, 300);
+                doc.text(_basculaDetails.Pesaje.trim(), _marginLeft + 100, 300);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 100, 300);
+
+
+
+
+
+
+                doc.text(_bruto, _marginLeft, 300);
+                doc.text(_basculaDetails.Pesaje2.trim(), _marginLeft + 30, 300);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 30, 300);
+
+
+
+                doc.text(_called_Neto, _marginLeft, 300);
+                doc.text(_basculaDetails.PesoNeto.trim(), _marginLeft + 40, 300);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 300);
+
+
+
+
+
+                doc.text(_placa, _marginLeft, 300);
+                doc.text(_basculaDetails.Placa.trim(), 60, 300);
+                doc.text(_pdf.Helpers.Line, _marginLeft + 40, 300);
+
+
+
+
+
 
 
 

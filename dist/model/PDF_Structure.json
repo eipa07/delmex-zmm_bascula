@@ -8,27 +8,26 @@
             "Line5": "GENERAL ESCOBEDO, N.L. C.P. 66072",
             "Line6": "TEL: (81) 4057 5110",
             "Line7": "E-MAIL: CALIDAD@DELMEX.MX CREDITOS@DELMEX.MX",
-            "Line8": "WWW.DELMEX.MX" 
+            "Line8": "WWW.DELMEX.MX"
         },
-
         "Body": {
             "Folio": "FOLIO ",
             "Placa": "PLACA ",
             "Bound": "BOUND ",
             "Fecha_Hora_SALIDA_1": "FECHA Y HORA ",
+            "Fecha_Hora_ENTRADA_1": "FECHA Y HORA ",
             "Bruto": "BRUTO ",
             "Called_Neto": "CALLED NETO ",
-            "Fecha_Hora_SALIDA_2": "DE SALIDA "
+            "Fecha_Hora_SALIDA_2": "DE SALIDA ",
+            "Fecha_Hora_ENTRADA_2": "DE ENTRADA "
         },
         "Footer": {
             "Nombre": "NOMBRE ",
             "Referencia_Material": "REFERENCIA DE MATERIAL ",
             "No_Doc": "NO. DE DOCUMENTO "
         },
-
         "Helpers": {
             "Line": "___________________________"
         }
     }
 }
-
